@@ -6,7 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 const allowedUsers = process.env.ALLOWED_USERS?.split(',') || [];
 
 const authOptions = {
-    secret: process.env.NEXTAUTH_SECRET!,
+    secret: process.env.AUTH_SECRET!,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
