@@ -1,11 +1,26 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef } from "react";
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
+    useEffect(() => {
+    // ログインしていない場合はログインページにリダイレクト
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+    }, [status, router]);
+    if (status === 'loading') {
+        return <div>Loading...</div>;
+    }
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -41,6 +56,8 @@ export default function Home() {
 
   return (
     <div className="container">
+      <p>このページは許可されたアカウントのみが閲覧できます。</p>
+      <button onClick={() => signOut()}>サインアウト</button>
       <h1>テキストを音声に変換</h1>
       <form onSubmit={handleSubmit}>
         <textarea
