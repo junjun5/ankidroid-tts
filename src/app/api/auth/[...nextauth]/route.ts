@@ -1,5 +1,5 @@
 // app/api/auth/[...nextauth]/route.ts
-import NextAuth from "next-auth";
+import NextAuth, { type Account, type Profile } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 // 許可するメールアドレスのリストを環境変数から取得
@@ -15,7 +15,7 @@ export const authOptions = {
   // 認証後のコールバック設定
   callbacks: {
     // signInコールバック: ログイン直後の認可処理
-    async signIn({ account, profile }) {
+    async signIn({ account, profile }: { account: Account | null; profile?: Profile }) {
       // Googleアカウントでのログイン時のみ処理
       if (account?.provider === 'google') {
         const userEmail = profile?.email;
