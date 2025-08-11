@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 // 許可するメールアドレスのリストを環境変数から取得
 const allowedUsers = process.env.ALLOWED_USERS?.split(',') || [];
 
-const authOptions = {
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
