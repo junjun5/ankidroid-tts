@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       status: 200,
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Content-Disposition': `inline; filename="${text}.mp3"`,
+        'Content-Disposition': 'inline; filename="sound.mp3"',
       },
     });
 
