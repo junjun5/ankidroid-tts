@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       },
       voice: {
         languageCode: 'en-US',
-        name: 'en-US-Chirp3-HD-Umbriel', // 日本語のボイスモデルを指定
+        name: 'en-US-Chirp3-HD-Umbriel', 
       },
       audioConfig: {
         audioEncoding: 'MP3',
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       status: 200,
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Content-Disposition': 'inline; filename="speech.mp3"',
+        'Content-Disposition': 'inline; filename="${text}.mp3"',
       },
     });
 
